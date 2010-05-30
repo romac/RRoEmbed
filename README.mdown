@@ -1,0 +1,39 @@
+RRoEmbed
+========
+
+Description
+-----------
+
+RRoEmbed is a PHP 5 library which provides an interface to consume oEmbed resources.
+
+oEmbed
+------
+
+oEmbed is a format for allowing an embedded representation of a URL on third party sites.
+The simple API allows a website to display embedded content (such as photos or videos)
+when a user posts a link to that resource, without having to parse the resource directly.
+
+[http://www.oembed.com/]()
+
+Usage
+-----
+
+    <?php
+
+    // Include the autoloader.
+    require_once( dirname( __FILE__ ) . '/Classes/RRoEmbed/Autoloader.class.php' );
+
+    // Register the autoloader.
+    RRoEmbed_Autoloader::getInstance()->register();
+
+    // Create a new consumer.
+    $c = new RRoEmbed_Consumer();
+
+    // Give it the URL to get the oEmbed resource of and the Provider.
+    // The provider can currently be one of: 'Flickr', 'OohEmbed', 'Vimeo' and 'Youtube'
+    $o = $c->consume(
+        'http://www.flickr.com/photos/romac17/4101838222/',
+        new RRoEmbed_Provider_Flickr()
+    );
+
+    print $o;
