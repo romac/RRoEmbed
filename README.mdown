@@ -37,3 +37,9 @@ Usage
     );
 
     print $o;
+
+    
+License
+-------
+
+The code is licensed under the very liberal [MIT license](http://opensource.org/licenses/mit-license.html).
