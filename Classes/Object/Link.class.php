@@ -27,7 +27,7 @@
  * Source file containing class RRoEmbed_Object_Link.
  * 
  * @package    RRoEmbed
- * @license    http://opensource.org/licenses/bsd-license.html New BSD License
+ * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  * @see        RRoEmbed_Object_Link
@@ -39,7 +39,7 @@
  * @todo       Description for class RRoEmbed_Object_Link.
  *
  * @package    RRoEmbed
- * @license    http://opensource.org/licenses/bsd-license.html New BSD License
+ * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
