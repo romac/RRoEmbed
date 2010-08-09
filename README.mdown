@@ -29,15 +29,15 @@ Usage
     // Create a new consumer.
     $c = new RRoEmbed_Consumer();
 
-    // Give it the URL to get the oEmbed resource of and the Provider.
+    // Call the "consume" method and supply it the URL of the resource you'd like
+    // to get the oEmbed representation of and the Provider instance.
     // The provider can currently be one of: 'Flickr', 'OohEmbed', 'Vimeo' and 'Youtube'
     $o = $c->consume(
         'http://www.flickr.com/photos/romac17/4101838222/',
         new RRoEmbed_Provider_Flickr()
     );
-
+    
     print $o;
-
     
 License
 -------
