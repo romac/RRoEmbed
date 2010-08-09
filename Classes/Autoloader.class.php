@@ -47,14 +47,14 @@ class RRoEmbed_Autoloader
 {
     
     /**
-     * A reference to this class instance.
+     * A reference to the unique class instance.
     *
      * @var RRoEmbed_Autoloader object.
      */
-    private static $_instance = NULL;
+    private static $_instance    = NULL;
     
     /**
-     * Classes Directory
+     * The path to the directory where the classes are stored.
      *
      * @var string
      */
@@ -72,7 +72,7 @@ class RRoEmbed_Autoloader
      */
     private function __construct()
     {
-        $this->_classesDirectory = dirname( __FILE__ );
+        $this->_classesDirectory = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -84,7 +84,7 @@ class RRoEmbed_Autoloader
     {
         if( !is_object( self::$_instance ) )
         {
-        self::$_instance = new self();
+            self::$_instance = new self();
         }
         
         return self::$_instance;
@@ -136,6 +136,16 @@ class RRoEmbed_Autoloader
      */
     public function register()
     {
+        if( !function_exists( 'spl_autoload_register' ) )
+        {
+            require_once( $this->_classesDirectory . 'Exception.class.php' );
+            
+            throw new RRoEmbed_Exception(
+                'The SPL extension is not loaded, you need to load it in order '
+              . 'to use this library.'
+            );
+        }
+        
         return spl_autoload_register( array( $this, 'loadClass' ) );
     }
     
@@ -147,6 +157,16 @@ class RRoEmbed_Autoloader
      */
     public function unregister()
     {
+        if( !function_exists( 'spl_autoload_unregister' ) )
+        {
+            require_once( $this->_classesDirectory . 'Exception.class.php' );
+            
+            throw new RRoEmbed_Exception(
+                'The SPL extension is not loaded, you need to load it in order '
+              . 'to use this library.'
+            );
+        }
+        
         return spl_autoload_unregister( array( $this, 'loadClass' ) );
     }
     
@@ -164,8 +184,13 @@ class RRoEmbed_Autoloader
             return FALSE;
         }
         
+        if( class_exists( $className, FALSE ) || interface_exists( $className, FALSE ) )
+        {
+            return TRUE;
+        }
+        
         $fileName = $this->_classesDirectory
-                  . str_replace( '_', DIRECTORY_SEPARATOR, substr( $className, 8 ) )
+                  . str_replace( '_', DIRECTORY_SEPARATOR, substr( $className, 9 ) )
                   . '.class.php';
         
         if( !file_exists( $fileName ) )

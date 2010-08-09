@@ -91,7 +91,7 @@ class RRoEmbed_Request
         
         if( curl_errno( $ch ) ) {
             
-            throw new Exception(
+            throw new RRoEmbed_Exception(
                 curl_error( $ch ), curl_errno( $ch )
             );
         }
@@ -100,7 +100,7 @@ class RRoEmbed_Request
         
         if ( !$this->_isValidResponseCode( $code ) )
         {
-            throw new Exception( 'Expecting a 2XX HTTP status, got ' . $code . '.' );
+            throw new RRoEmbed_Exception( 'Expecting a 2XX HTTP status, got ' . $code . '.' );
         }
         
         return $body;

@@ -24,26 +24,26 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Discover.
+ * Source file containing class RRoEmbed_Discoverer.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Discover
+ * @see        RRoEmbed_Discoverer
  */
 
 /**
- * Class RRoEmbed_Discover.
+ * Class RRoEmbed_Discoverer.
  * 
- * @todo       Description for class RRoEmbed_Discover.
+ * @todo       Description for class RRoEmbed_Discoverer.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Discover
+class RRoEmbed_Discoverer
 {
     
     /**
@@ -75,27 +75,45 @@ class RRoEmbed_Discover
      */
     protected $_preferredFormat = 'application/json';
     
+    /**
+     * Get the provider's endpoint URL for the supplied resource. 
+     *
+     * @param string $url The URL to get the endpoint's URL for.
+     * 
+     * @return void
+     * 
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     public function getEndpointForUrl( $url )
     {
-        if( !isset( $this->_cachedEndpoints[ $url ] ) ) {
-            
+        if( !isset( $this->_cachedEndpoints[ $url ] ) )
+        {
             $this->_cachedEndpoints[ $url ] = $this->_fetchEndpointForUrl( $url );
         }
         
         return $this->_cachedEndpoints[ $url ];
     }
     
+    /**
+     * Fetch the provider's endpoint URL for the supplied resource.
+     *
+     * @param string $url The provider's endpoint URL for the supplied resource.
+     * 
+     * @return string
+     * 
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     protected function _fetchEndpointForUrl( $url )
     {
         $request = new RRoEmbed_Request( $url );
         
-        try {
-            
+        try
+        {
             $body = $request->send();
-        
-        } catch( Exception $e ) {
-            
-            throw new Exception(
+        }
+        catch( Exception $e )
+        {
+            throw new RRoEmbed_Exception(
                 'Unable to fetch the page body for "' . $url . '".'
             );
         }
@@ -106,17 +124,17 @@ class RRoEmbed_Discover
             self::LINK_REGEX
         );
         
-        if( !preg_match_all( $regEx, $body, $matches, PREG_SET_ORDER ) ) {
-            
-            throw new Exception(
-                'No valid oEmbed links found on page.'
+        if( !preg_match_all( $regEx, $body, $matches, PREG_SET_ORDER ) )
+        {
+            throw new RRoEmbed_Exception(
+                'No valid oEmbed links found on the document at "' . $url . '".'
             );
         }
         
-        foreach( $matches as $match ) {
-            
-            if( $match[ 'Format' ] === $this->_preferredFormat ) {
-                
+        foreach( $matches as $match )
+        {
+            if( $match[ 'Format' ] === $this->_preferredFormat )
+            {
                 return $this->_extractEndpointFromAttributes( $match[ 'Attributes' ] );
             }
         }
@@ -124,11 +142,20 @@ class RRoEmbed_Discover
         return $this->_extractEndpointFromAttributes( $match[ 'Attributes' ] );
     }
     
+    /**
+     * Extract the endpoint's URL from the <link>'s tag attributes.
+     *
+     * @param  string $attributes The attributes of the <link> tag.
+     * 
+     * @return string
+     * 
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     protected function _extractEndpointFromAttributes( $attributes )
     {
         if( !preg_match( '/href="([^"]+)"/i', $attributes, $matches ) ) {
             
-            throw new Exception(
+            throw new RRoEmbed_Exception(
                 'No "href" attribute in <link> tag.'
             );
         }

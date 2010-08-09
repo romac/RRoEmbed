@@ -24,97 +24,97 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Object_AbstractObject.
+ * Source file containing class RRoEmbed_Resource_AbstractResource.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Object_AbstractObject
+ * @see        RRoEmbed_Resource_AbstractResource
  */
 
 /**
- * Class RRoEmbed_Object_AbstractObject.
+ * Class RRoEmbed_Resource_AbstractResource.
  * 
- * @todo       Description for class RRoEmbed_Object_AbstractObject.
+ * @todo       Description for class RRoEmbed_Resource_AbstractResource.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-abstract class RRoEmbed_Object_AbstractObject
+abstract class RRoEmbed_Resource_AbstractResource
 {
     
     /**
-     * The resource type
+     * Type.
      *
      * @var string
      */
-    protected $_type = '';
+    protected $_type            = '';
     
     /**
-     * Version
+     * Version.
      *
      * @var string
      */
-    protected $_version = '1.0';
+    protected $_version         = '1.0';
     
     /**
-     * Title
+     * Title.
      *
      * @var string
      */
-    protected $_title = '';
+    protected $_title           = '';
     
     /**
-     * Author Name
+     * Author Name.
      *
      * @var string
      */
-    protected $_authorName = '';
+    protected $_authorName      = '';
     
     /**
-     * Author URL
+     * Author URL.
      *
      * @var string
      */
-    protected $_authorUrl = '';
+    protected $_authorUrl       = '';
     
     /**
-     * ProviderName
+     * Provider Name.
      *
      * @var string
      */
-    protected $_providerName = '';
+    protected $_providerName    = '';
     
     /**
-     * ProviderUrl
+     * Provider URL.
      *
      * @var string
      */
-    protected $_providerUrl = '';
+    protected $_providerUrl     = '';
     
     /**
      * Cache Age
      *
      * @var integer+
      */
-    protected $_cacheAge = 0;
+    protected $_cacheAge        = 0;
     
     /**
      * Thumbnail URL
      *
      * @var string
      */
-    protected $_thumbnailUrl = '';
+    protected $_thumbnailUrl    = '';
     
     /**
      * Thumbnail Width
      *
      * @var integer
      */
-    protected $_thumbnailWidth = 0;
+    protected $_thumbnailWidth  = 0;
     
     /**
      * Thumbnail Height
@@ -123,8 +123,24 @@ abstract class RRoEmbed_Object_AbstractObject
      */
     protected $_thumbnailHeight = '';
     
+    /**
+     * Get a string reprenstation of the oEmbed resource.
+     *
+     * @return string
+     * 
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     abstract public function getAsString();
     
+    /**
+     * Get a string reprenstation of the oEmbed resource.
+     *
+     * @see    getAsString
+     * 
+     * @return string
+     * 
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     public function __toString()
     {
         return $this->getAsString();
@@ -250,14 +266,21 @@ abstract class RRoEmbed_Object_AbstractObject
         return $this;
     }
     
+    /**
+     * Create a Resource object from the supplied resource.
+     *
+     * @param stdClass $resource The resource to create an Resource from. 
+     * @return RRoEmbed_Resource_AbstractResource
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     public static function factory( $resource )
     {
         $type      = $resource->type;
-        $className = 'RRoEmbed_Object_' . ucfirst( strtolower( $type ) );
+        $className = 'RRoEmbed_Resource_' . ucfirst( strtolower( $type ) );
         
         if( !class_exists( $className ) )
         {
-            throw new Exception(
+            throw new RRoEmbed_Exception(
                 'Unknown resource type "' . $type .'".'
             );
         }

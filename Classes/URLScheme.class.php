@@ -53,14 +53,14 @@ class RRoEmbed_URLScheme
      *
      * @var string
      */
-    protected $_scheme = '';
+    protected $_scheme       = '';
     
     /**
      * Regular Expression Pattern.
      *
      * @var string
      */
-    protected $_pattern  = '';
+    protected $_pattern      = '';
     
     public function __construct( $scheme )
     {

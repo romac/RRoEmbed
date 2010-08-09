@@ -74,6 +74,16 @@ class RRoEmbed_Provider
      */
     protected $_endpoint = '';
     
+    /**
+     * Create a new RRoEmbed_Provider instance.
+     *
+     * @param string $endpoint The provider's endpoint URL.
+     * @param array  $schemes The schemes the providers match.
+     * @param string $url The URL of provider's website.
+     * @param string $name The name of the provider.
+     *
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
     public function __construct( $endpoint, array $schemes = array(), $url = '', $name = '' )
     {
         foreach( $schemes as $key => $scheme )
