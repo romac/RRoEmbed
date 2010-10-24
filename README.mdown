@@ -31,11 +31,14 @@ Usage
 
     // Call the "consume" method and supply it the URL of the resource you'd like
     // to get the oEmbed representation of and the Provider instance.
-    // The provider can currently be one of: 'Flickr', 'OohEmbed', 'Vimeo' and 'Youtube'
     $o = $c->consume(
         'http://www.flickr.com/photos/romac17/4101838222/',
         new RRoEmbed_Provider_Flickr()
     );
+    
+    // Notice you can also omit to specify the provider, if so the Consumer will try to
+    // automatically find a valid provider endpoint.
+    // $o = $c->consume( 'http://www.flickr.com/photos/romac17/4101838222/' );
     
     print $o;
     
