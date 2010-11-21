@@ -121,7 +121,7 @@ abstract class RRoEmbed_Resource_AbstractResource
      *
      * @var integer
      */
-    protected $_thumbnailHeight = '';
+    protected $_thumbnailHeight = 0;
     
     /**
      * Get a string reprenstation of the oEmbed resource.
