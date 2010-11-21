@@ -179,7 +179,7 @@ class RRoEmbed_Consumer
         
         $urlParams = http_build_query( $parameters, '', '&' );
         $url       = $endPoint
-                   . ( ( strpos( $endPoint, '=' ) !== FALSE ) ? '&' : '?' )
+                   . ( ( strpos( $endPoint, '?' ) !== FALSE ) ? '&' : '?' )
                    . $urlParams;
         
         return $url;
