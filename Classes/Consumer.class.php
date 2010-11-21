@@ -177,9 +177,12 @@ class RRoEmbed_Consumer
             'format' => $format
         );
         
-        $uriParams  = http_build_query( $parameters, '', '&' );
+        $urlParams = http_build_query( $parameters, '', '&' );
+        $url       = $endPoint
+                   . ( ( strpos( $endPoint, '=' ) !== FALSE ) ? '&' : '?' )
+                   . $urlParams;
         
-        return http_build_url( $endPoint, array( 'query' => $uriParams ) );
+        return $url;
     }
     
     /**
