@@ -24,26 +24,26 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Object_Photo.
+ * Source file containing class RRoEmbed_Resource_Photo.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Object_Photo
+ * @see        RRoEmbed_Resource_Photo
  */
 
 /**
- * Class RRoEmbed_Object_Photo.
+ * Class RRoEmbed_Resource_Photo.
  * 
- * @todo       Description for class RRoEmbed_Object_Photo.
+ * @todo       Description for class RRoEmbed_Resource_Photo.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Object_Photo extends RRoEmbed_Resource_AbstractResource
+class RRoEmbed_Resource_Photo extends RRoEmbed_Resource_AbstractResource
 {
 
     /**

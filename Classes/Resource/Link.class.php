@@ -24,26 +24,26 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Object_Link.
+ * Source file containing class RRoEmbed_Resource_Link.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Object_Link
+ * @see        RRoEmbed_Resource_Link
  */
 
 /**
- * Class RRoEmbed_Object_Link.
+ * Class RRoEmbed_Resource_Link.
  * 
- * @todo       Description for class RRoEmbed_Object_Link.
+ * @todo       Description for class RRoEmbed_Resource_Link.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Object_Link extends RRoEmbed_Resource_AbstractResource
+class RRoEmbed_Resource_Link extends RRoEmbed_Resource_AbstractResource
 {
     
     public function getAsString()
