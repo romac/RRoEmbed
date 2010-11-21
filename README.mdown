@@ -21,7 +21,7 @@ Usage
     <?php
 
     // Include the autoloader.
-    require_once( dirname( __FILE__ ) . '/Classes/RRoEmbed/Autoloader.class.php' );
+    require_once( dirname( __FILE__ ) . '/Classes/Autoloader.class.php' );
 
     // Register the autoloader.
     RRoEmbed_Autoloader::getInstance()->register();
