@@ -124,6 +124,42 @@ abstract class RRoEmbed_Resource_AbstractResource
     protected $_thumbnailHeight = 0;
     
     /**
+     * Create a Resource object from the supplied resource.
+     *
+     * @param stdClass $resource The resource to create an Resource from. 
+     * @return RRoEmbed_Resource_AbstractResource
+     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
+     */
+    public static function factory( $resource )
+    {
+        $type      = $resource->type;
+        $className = 'RRoEmbed_Resource_' . ucfirst( strtolower( $type ) );
+        
+        if( !class_exists( $className ) )
+        {
+            throw new RRoEmbed_Exception(
+                'Unknown resource type "' . $type .'".'
+            );
+        }
+        
+        $object = new $className();
+        
+        foreach( $resource as $property => $value )
+        {
+            $setterMethodName = 'set' . self::_underscoreToUpperCamelCase( $property );
+            
+            if( !method_exists( $object, $setterMethodName ) && !method_exists( $object, '__call' )  ) {
+                
+                continue;
+            }
+            
+            $object->$setterMethodName( $value );
+        }
+        
+        return $object;
+    }
+    
+    /**
      * Get a string reprenstation of the oEmbed resource.
      *
      * @return string
@@ -264,47 +300,6 @@ abstract class RRoEmbed_Resource_AbstractResource
         $this->_thumbnailHeight = $thumbnailHeight;
          
         return $this;
-    }
-    
-    /**
-     * Create a Resource object from the supplied resource.
-     *
-     * @param stdClass $resource The resource to create an Resource from. 
-     * @return RRoEmbed_Resource_AbstractResource
-     * @author Romain Ruetschi <romain.ruetschi@gmail.com>
-     */
-    public static function factory( $resource )
-    {
-        $type      = $resource->type;
-        $className = 'RRoEmbed_Resource_' . ucfirst( strtolower( $type ) );
-        
-        if( !class_exists( $className ) )
-        {
-            throw new RRoEmbed_Exception(
-                'Unknown resource type "' . $type .'".'
-            );
-        }
-        
-        $object = new $className();
-        
-        foreach( $resource as $property => $value )
-        {
-            $setterMethodName = 'set' . self::_underscoreToUpperCamelCase( $property );
-            
-            if( !method_exists( $object, $setterMethodName ) && !method_exists( $object, '__call' )  ) {
-                
-                continue;
-            }
-            
-            $object->$setterMethodName( $value );
-        }
-        
-        return $object;
-    }
-    
-    protected function _underscoreToCamelCase( $string )
-    {
-        return lcfirst( self::_underscoreToCamelCase( $string ) );
     }
     
     protected static function _underscoreToUpperCamelCase( $string )
