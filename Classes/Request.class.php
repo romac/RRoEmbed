@@ -29,7 +29,7 @@
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  * @see        RRoEmbed\Request
  */
  
@@ -44,7 +44,7 @@ namespace RRoEmbed;
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  */
 class Request
 {
@@ -66,7 +66,7 @@ class Request
      */
     protected $_options = array(
         self::OPTION_TIMEOUT    => 5,
-        self::OPTION_USER_AGENT => 'RRoEmbed 0.1'
+        self::OPTION_USER_AGENT => 'RRoEmbed 0.2'
     );
     
     public function __construct( $url, array $options = array() )

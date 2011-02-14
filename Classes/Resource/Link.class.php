@@ -29,7 +29,7 @@
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  * @see        RRoEmbed\Resource\Link
  */
  
@@ -44,7 +44,7 @@ namespace RRoEmbed\Resource;
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  */
 class Link extends AbstractResource
 {

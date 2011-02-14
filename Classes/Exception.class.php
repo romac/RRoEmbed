@@ -24,17 +24,14 @@
  */
 
 /**
- * Source file containing class Exception.
+ * Source file containing class RRoEmbed_Exception.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
- * @see        RRoEmbed\Exception
+ * @version    0.2
+ * @see        RRoEmbed_Exception
  */
-
-// Namespace declaration
-namespace RRoEmbed;
 
 /**
  * The base Exception class for the oEmbed library.
@@ -42,15 +39,11 @@ namespace RRoEmbed;
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  */
-class Exception extends \Exception
+class RRoEmbed_Exception extends Exception
 {
     
-    const PAGE_BODY_FETCH_FAILED = 0x01;
-    const NO_OEMBED_LINKS_FOUND  = 0x02;
-    const NO_HREF_ATTRIBUTE      = 0x04;
-    const UNKNOWN_RESOURCE_TYPE  = 0x08;
-    const NON_2XX_HTTP_STATUS    = 0x10;
+    
     
 }

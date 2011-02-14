@@ -24,29 +24,26 @@
  */
 
 /**
- * Source file containing class Resource\Html.
+ * Source file containing class RRoEmbed_Resource_Html.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
- * @see        RRoEmbed\Resource\Html
+ * @version    0.2
+ * @see        RRoEmbed_Resource_Html
  */
- 
-// Namespace declaration.
-namespace RRoEmbed\Resource;
 
 /**
- * Class  RRoEmbed\Resource\Html.
+ * Class RRoEmbed_Resource_Html.
  * 
- * @todo       Description for class Resource\Html.
+ * @todo       Description for class RRoEmbed_Resource_Html.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
- * @version    0.1
+ * @version    0.2
  */
-class Html extends AbstractResource
+class RRoEmbed_Resource_Html extends RRoEmbed_Resource_AbstractResource
 {
     
     /**
