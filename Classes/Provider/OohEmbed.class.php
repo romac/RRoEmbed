@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Provider_OohEmbed.
+ * Source file containing class Provider\OohEmbed.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Provider_OohEmbed
+ * @see        RRoEmbed\Provider\OohEmbed
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Provider;
 
 /**
- * Class RRoEmbed_Provider_OohEmbed.
+ * Class  RRoEmbed\Provider\OohEmbed.
  * 
- * @todo       Description for class RRoEmbed_Provider_OohEmbed.
+ * @todo       Description for class Provider\OohEmbed.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Provider_OohEmbed extends RRoEmbed_Provider
+class OohEmbed extends \RRoEmbed\Provider
 {
 
     public function __construct()

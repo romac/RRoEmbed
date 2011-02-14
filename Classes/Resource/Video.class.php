@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Resource_Video.
+ * Source file containing class Resource\Video.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Resource_Video
+ * @see        RRoEmbed\Resource\Video
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Resource;
 
 /**
- * Class RRoEmbed_Resource_Video.
+ * Class  RRoEmbed\Resource\Video.
  * 
- * @todo       Description for class RRoEmbed_Resource_Video.
+ * @todo       Description for class Resource\Video.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Resource_Video extends RRoEmbed_Resource_Html
+class Video extends Html
 {
     
     

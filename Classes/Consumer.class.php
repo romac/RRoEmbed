@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Consumer.
+ * Source file containing class Consumer.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Consumer
+ * @see        RRoEmbed\Consumer
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_Consumer.
+ * Class  RRoEmbed\Consumer.
  * 
- * @todo       Description for class RRoEmbed_Consumer.
+ * @todo       Description for class Consumer.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Consumer
+class Consumer
 {
     
     /**
@@ -73,7 +76,7 @@ class RRoEmbed_Consumer
      *
      * @param array $providers   An array of the available providers.
      *
-     * @return RRoEmbed_Consumer A reference to this instance.
+     * @return RRoEmbed\Consumer A reference to this instance.
      *
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
@@ -89,14 +92,14 @@ class RRoEmbed_Consumer
      * or try to discover the right one.
      *
      * @param  string            $url         The URL of the resource to consume.
-     * @param  RRoEmbed_Provider $provider    The provider to use.
+     * @param  RRoEmbed\Provider $provider    The provider to use.
      * @param  string            $format      The format of the data to fetch.
      *
-     * @return RRoEmbed_Resource_AbstractResource
+     * @return RRoEmbed\Resource\AbstractResource
      *
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
-    public function consume( $url, RRoEmbed_Provider $provider = NULL, $format = self::FORMAT_DEFAULT )
+    public function consume( $url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT )
     {
         // Try to find a provider matching the supplied URL if no one has been supplied.
         if( !$provider )
@@ -112,12 +115,12 @@ class RRoEmbed_Consumer
         else
         {
             // If no provider was found, try to discover the endpoint URL.
-            $discover = new RRoEmbed_Discoverer();
+            $discover = new Discoverer();
             $endPoint = $discover->getEndpointForUrl( $url );
         }
         
         $requestUrl = $this->_buildOEmbedRequestUrl( $url, $endPoint, $format );
-        $request    = new RRoEmbed_Request( $requestUrl );
+        $request    = new Request( $requestUrl );
         $body       = $request->send();
         
         $methodName = '_process' . ucfirst( strtolower( $format ) ) . 'Response';
@@ -126,17 +129,25 @@ class RRoEmbed_Consumer
     }
     
     /**
+     * @see consume()
+     */
+    public function __invoke( $url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT )
+    {
+        return $this->consume( $url, $provider, $format );
+    }
+    
+    /**
      * Process the JSON response returned by the provider.
      *
      * @param string $response The JSON data returned by the provider.
      *
-     * @return RRoEmbed_Resource_AbstractResource
+     * @return RRoEmbed\Resource\AbstractResource
      *
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
     protected function _processJsonResponse( $response )
     {
-        return RRoEmbed_Resource_AbstractResource::factory(
+        return Resource\AbstractResource::factory(
             json_decode( $response )
         );
     }
@@ -146,13 +157,13 @@ class RRoEmbed_Consumer
      *
      * @param string $response The XML data returned by the provider.
      *
-     * @return RRoEmbed_Resource_AbstractResource
+     * @return RRoEmbed\Resource\AbstractResource
      *
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
     protected function _processXmlResponse( $response )
     {
-        return RRoEmbed_Resource_AbstractResource::factory(
+        return Resource\AbstractResource::factory(
             simplexml_load_string( $response )
         );
     }
@@ -190,7 +201,7 @@ class RRoEmbed_Consumer
      *
      * @param  string $url The URL to find an oEmbed provider for.
      * 
-     * @return RRoEmbed_Provider
+     * @return RRoEmbed\Provider
      *
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */

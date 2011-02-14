@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Provider_Flickr.
+ * Source file containing class Provider\Flickr.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Provider_Flickr
+ * @see        RRoEmbed\Provider\Flickr
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Provider;
 
 /**
- * Class RRoEmbed_Provider_Flickr.
+ * Class  RRoEmbed\Provider\Flickr.
  * 
- * @todo       Description for class RRoEmbed_Provider_Flickr.
+ * @todo       Description for class Provider\Flickr.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Provider_Flickr extends RRoEmbed_Provider
+class Flickr extends \RRoEmbed\Provider
 {
     
     public function __construct()

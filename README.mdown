@@ -21,26 +21,64 @@ Usage
     <?php
 
     // Include the autoloader.
-    require_once( dirname( __FILE__ ) . '/Classes/Autoloader.class.php' );
+    require_once( __DIR__ . '/Classes/Autoloader.class.php' );
 
     // Register the autoloader.
-    RRoEmbed_Autoloader::getInstance()->register();
+    RRoEmbed\Autoloader::getInstance()->register();
 
     // Create a new consumer.
-    $c = new RRoEmbed_Consumer();
+    $consumer = new RRoEmbed\Consumer();
 
     // Call the "consume" method and supply it the URL of the resource you'd like
     // to get the oEmbed representation of and the Provider instance.
-    $o = $c->consume(
-        'http://www.flickr.com/photos/romac17/4101838222/',
-        new RRoEmbed_Provider_Flickr()
+    $resource = $consumer->consume(
+        'http://www.youtube.com/watch?v=ThvBJMzmSZI',
+        new RRoEmbed\Provider\YouTube()
     );
-    
-    // Notice you can also omit to specify the provider, if so the Consumer will try to
+
+    // Will call __toString()
+    print $resource;
+
+    /*
+    Result:
+
+    <object width="480" height="295">
+        <param name="movie" value="http://www.youtube.com/e/ThvBJMzmSZI"></param>
+        <param name="allowFullScreen" value="true"></param>
+        <param name="allowscriptaccess" value="always"></param>
+        <embed src="http://www.youtube.com/e/ThvBJMzmSZI" type="application/x-shockwave-flash" width="480" height="295" allowscriptaccess="always" allowfullscreen="true"></embed>
+    </object>
+    */
+
+    // You can also omit to specify the provider, if so the Consumer will try to
     // automatically find a valid provider endpoint.
-    // $o = $c->consume( 'http://www.flickr.com/photos/romac17/4101838222/' );
-    
-    print $o;
+    // Note that, as the Consumer class implements the __invoke method you
+    // can use any of its instances as a callable.
+    $resource = $consumer( 'http://www.youtube.com/watch?v=ThvBJMzmSZI' );
+
+    print_r( $resource );
+
+    /*
+    Result:
+
+    RRoEmbed\Resource\Video Object
+    (
+        [_html:protected]            => <object width="480" height="295"><param name="movie" value="http://www.youtube.com/e/ThvBJMzmSZI"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/e/ThvBJMzmSZI" type="application/x-shockwave-flash" width="480" height="295" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+        [_width:protected]           => 480
+        [_height:protected]          => 295
+        [_type:protected]            => video
+        [_version:protected]         => 1.0
+        [_title:protected]           => The Most AMAZING video on the internet #Egypt #jan25
+        [_authorName:protected]      => hadi15
+        [_authorUrl:protected]       => http://www.youtube.com/user/hadi15
+        [_providerName:protected]    => YouTube
+        [_providerUrl:protected]     => http://www.youtube.com/
+        [_cacheAge:protected]        => 0
+        [_thumbnailUrl:protected]    => http://i1.ytimg.com/vi/ThvBJMzmSZI/hqdefault.jpg
+        [_thumbnailWidth:protected]  => 480
+        [_thumbnailHeight:protected] => 360
+    )
+    */
     
 License
 -------

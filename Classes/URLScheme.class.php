@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_URLScheme.
+ * Source file containing class URLScheme.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_URLScheme
+ * @see        RRoEmbed\URLScheme
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_URLScheme.
+ * Class RRoEmbed\URLScheme.
  * 
- * @todo       Description for class RRoEmbed_URLScheme.
+ * @todo       Description for class URLScheme.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_URLScheme
+class URLScheme
 {
     
     const WILDCARD_CHARACTER = '*';

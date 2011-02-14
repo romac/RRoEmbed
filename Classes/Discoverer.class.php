@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Discoverer.
+ * Source file containing class Discoverer.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Discoverer
+ * @see        RRoEmbed\Discoverer
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_Discoverer.
+ * Class  RRoEmbed\Discoverer.
  * 
- * @todo       Description for class RRoEmbed_Discoverer.
+ * @todo       Description for class Discoverer.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Discoverer
+class Discoverer
 {
     
     /**
@@ -105,7 +108,7 @@ class RRoEmbed_Discoverer
      */
     protected function _fetchEndpointForUrl( $url )
     {
-        $request = new RRoEmbed_Request( $url );
+        $request = new Request( $url );
         
         try
         {
@@ -113,8 +116,10 @@ class RRoEmbed_Discoverer
         }
         catch( Exception $e )
         {
-            throw new RRoEmbed_Exception(
-                'Unable to fetch the page body for "' . $url . '".'
+            throw new Exception(
+                'Unable to fetch the page body for "' . $url . '".',
+                Exception::PAGE_BODY_FETCH_FAILED,
+                $e
             );
         }
         
@@ -126,8 +131,9 @@ class RRoEmbed_Discoverer
         
         if( !preg_match_all( $regEx, $body, $matches, PREG_SET_ORDER ) )
         {
-            throw new RRoEmbed_Exception(
-                'No valid oEmbed links found on the document at "' . $url . '".'
+            throw new Exception(
+                'No valid oEmbed links found on the document at "' . $url . '".',
+                Exception::NO_OEMBED_LINKS_FOUND
             );
         }
         
@@ -155,8 +161,9 @@ class RRoEmbed_Discoverer
     {
         if( !preg_match( '/href="([^"]+)"/i', $attributes, $matches ) ) {
             
-            throw new RRoEmbed_Exception(
-                'No "href" attribute in <link> tag.'
+            throw new Exception(
+                'No "href" attribute in <link> tag.',
+                Exception::NO_HREF_ATTRIBUTE
             );
         }
         

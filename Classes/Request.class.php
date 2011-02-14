@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Request.
+ * Source file containing class Request.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Request
+ * @see        RRoEmbed\Request
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_Request.
+ * Class  RRoEmbed\Request.
  * 
- * @todo       Description for class RRoEmbed_Request.
+ * @todo       Description for class Request.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Request
+class Request
 {
     
     const OPTION_TIMEOUT    = 'http_timeout';
@@ -91,8 +94,9 @@ class RRoEmbed_Request
         
         if( curl_errno( $ch ) ) {
             
-            throw new RRoEmbed_Exception(
-                curl_error( $ch ), curl_errno( $ch )
+            throw new Exception(
+                'cURL error: ' . curl_error( $ch ),
+                curl_errno( $ch )
             );
         }
         
@@ -100,7 +104,10 @@ class RRoEmbed_Request
         
         if ( !$this->_isValidResponseCode( $code ) )
         {
-            throw new RRoEmbed_Exception( 'Expecting a 2XX HTTP status, got ' . $code . '.' );
+            throw new Exception(
+                'Expecting a 2XX HTTP status, got ' . $code . '.',
+                Exception::NON_2XX_HTTP_STATUS
+            );
         }
         
         return $body;
@@ -108,7 +115,7 @@ class RRoEmbed_Request
     
     protected function _isValidResponseCode( $code )
     {
-        return ( int )floor( $code / 100 ) === 2;
+        return ( 200 <= $code ) && ( $code < 300 );
     }
     
 }

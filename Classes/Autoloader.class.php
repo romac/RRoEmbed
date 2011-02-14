@@ -24,32 +24,35 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Autoloader.
+ * Source file containing class Autoloader.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Autoloader
+ * @see        RRoEmbed\Autoloader
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_Autoloader.
+ * Class  RRoEmbed\Autoloader.
  * 
- * @todo       Description for class RRoEmbed_Autoloader.
+ * @todo       Description for class Autoloader.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Autoloader
+class Autoloader
 {
     
     /**
      * A reference to the unique class instance.
     *
-     * @var RRoEmbed_Autoloader object.
+     * @var RRoEmbed\Autoloader object.
      */
     private static $_instance    = NULL;
     
@@ -59,26 +62,25 @@ class RRoEmbed_Autoloader
      * @var string
      */
     protected $_classesDirectory = '';
-
-
+    
     /**
      * Class constructor.
-     * The constructor of this class cannot be used to instanciate a RRoEmbed_Autoloader object.
+     * The constructor of this class cannot be used to instanciate a RRoEmbed\Autoloader object.
      * This class is a singleton class, this means that there is only one instance
-     * of the RRoEmbed_Autoloader class and this instance is shared by every one who does a call
-     * to RRoEmbed_Autoloader::getInstance().
+     * of the RRoEmbed\Autoloader class and this instance is shared by every one who does a call
+     * to RRoEmbed\Autoloader::getInstance().
      *
-     * @see getInstance to know how to create the RRoEmbed_Autoloader instance or to get a reference to it.
+     * @see getInstance to know how to create the RRoEmbed\Autoloader instance or to get a reference to it.
      */
     private function __construct()
     {
-        $this->_classesDirectory = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
+        $this->_classesDirectory = __DIR__ . DIRECTORY_SEPARATOR;
     }
-
+    
     /**
-     * Creates or returns the only instance of the RRoEmbed_Autoloader class.
+     * Creates or returns the only instance of the RRoEmbed\Autoloader class.
      *
-     * @return RRoEmbed_Autoloader the only instance of the RRoEmbed_Autoloader class.
+     * @return RRoEmbed\Autoloader the only instance of the RRoEmbed\Autoloader class.
      */
     public static function getInstance()
     {
@@ -101,7 +103,7 @@ class RRoEmbed_Autoloader
      */
     final public function __clone()
     {
-        throw new BadMethodCallException(
+        throw new \BadMethodCallException(
             'This class is a singleton class, you are not allowed to clone it.' . "\n" .
             'Please call ' . get_class( $this ) . '::getInstance() to get a reference to ' .
             'the only instance of this class.'
@@ -120,7 +122,7 @@ class RRoEmbed_Autoloader
      */
     final public function __wakeup()
     {
-        throw new BadMethodCallException(
+        throw new \BadMethodCallException(
             'This class is a singleton class, you are not allowed to unserialize ' .
             'it as this could create a new instance of it.' . "\n" .
             'Please call ' . get_class( $this ) . '::getInstance() to get a reference to ' .
@@ -140,7 +142,7 @@ class RRoEmbed_Autoloader
         {
             require_once( $this->_classesDirectory . 'Exception.class.php' );
             
-            throw new RRoEmbed_Exception(
+            throw new \RuntimeException(
                 'The SPL extension is not loaded, you need to load it in order '
               . 'to use this library.'
             );
@@ -161,7 +163,7 @@ class RRoEmbed_Autoloader
         {
             require_once( $this->_classesDirectory . 'Exception.class.php' );
             
-            throw new RRoEmbed_Exception(
+            throw new \RuntimeException(
                 'The SPL extension is not loaded, you need to load it in order '
               . 'to use this library.'
             );
@@ -190,14 +192,14 @@ class RRoEmbed_Autoloader
         }
         
         $fileName = $this->_classesDirectory
-                  . str_replace( '_', DIRECTORY_SEPARATOR, substr( $className, 9 ) )
+                  . str_replace( '\\', DIRECTORY_SEPARATOR, substr( $className, 9 ) )
                   . '.class.php';
         
         if( !file_exists( $fileName ) )
         {
             return FALSE;
         }
-
+        
         require_once( $fileName );
         
         return class_exists( $className, FALSE ) || interface_exists( $className, FALSE );

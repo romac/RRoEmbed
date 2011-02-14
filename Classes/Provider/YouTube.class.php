@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Provider_YouTube.
+ * Source file containing class Provider\YouTube.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Provider_YouTube
+ * @see        RRoEmbed\Provider\YouTube
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Provider;
 
 /**
- * Class RRoEmbed_Provider_YouTube.
+ * Class  RRoEmbed\Provider\YouTube.
  * 
- * @todo       Description for class RRoEmbed_Provider_YouTube.
+ * @todo       Description for class Provider\YouTube.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Provider_YouTube extends RRoEmbed_Provider
+class YouTube extends \RRoEmbed\Provider
 {
     
     public function __construct()

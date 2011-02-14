@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Provider_Vimeo.
+ * Source file containing class Provider\Vimeo.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Provider_Vimeo
+ * @see        RRoEmbed\Provider\Vimeo
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Provider;
 
 /**
- * Class RRoEmbed_Provider_Vimeo.
+ * Class  RRoEmbed\Provider\Vimeo.
  * 
- * @todo       Description for class RRoEmbed_Provider_Vimeo.
+ * @todo       Description for class Provider\Vimeo.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Provider_Vimeo extends RRoEmbed_Provider
+class Vimeo extends \RRoEmbed\Provider
 {
     
     public function __construct()

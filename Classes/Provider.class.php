@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Provider.
+ * Source file containing class Provider.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Provider
+ * @see        RRoEmbed\Provider
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed;
 
 /**
- * Class RRoEmbed_Provider.
+ * Class  RRoEmbed\Provider.
  * 
- * @todo       Description for class RRoEmbed_Provider.
+ * @todo       Description for class Provider.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-class RRoEmbed_Provider
+class Provider
 {
 
     /**
@@ -63,7 +66,7 @@ class RRoEmbed_Provider
     /**
      * URL Scheme
      *
-     * @var RRoEmbed_URLScheme[]
+     * @var RRoEmbed\URLScheme[]
      */
     protected $_schemes  = array();
     
@@ -75,7 +78,7 @@ class RRoEmbed_Provider
     protected $_endpoint = '';
     
     /**
-     * Create a new RRoEmbed_Provider instance.
+     * Create a new RRoEmbed\Provider instance.
      *
      * @param string $endpoint The provider's endpoint URL.
      * @param array  $schemes The schemes the providers match.
@@ -88,11 +91,11 @@ class RRoEmbed_Provider
     {
         foreach( $schemes as $key => $scheme )
         {
-            if( !is_object( $scheme ) || !( $scheme instanceof RRoEmbed_URLScheme ) )
+            if( !is_object( $scheme ) || !( $scheme instanceof URLScheme ) )
             {
                 if( is_string( $scheme ) )
                 {
-                    $schemes[ $key ] = new RRoEmbed_URLScheme( $scheme );
+                    $schemes[ $key ] = new URLScheme( $scheme );
                 }
                 else
                 {
@@ -157,7 +160,7 @@ class RRoEmbed_Provider
     /**
      * Get the provider's URL schemes.
      *
-     * @return RRoEmbed_URLScheme[]
+     * @return RRoEmbed\URLScheme[]
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
     public function getSchemes()

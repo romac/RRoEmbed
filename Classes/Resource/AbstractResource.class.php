@@ -24,26 +24,29 @@
  */
 
 /**
- * Source file containing class RRoEmbed_Resource_AbstractResource.
+ * Source file containing class Resource\AbstractResource.
  * 
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
- * @see        RRoEmbed_Resource_AbstractResource
+ * @see        RRoEmbed\Resource\AbstractResource
  */
+ 
+// Namespace declaration.
+namespace RRoEmbed\Resource;
 
 /**
- * Class RRoEmbed_Resource_AbstractResource.
+ * Class  RRoEmbed\Resource\AbstractResource.
  * 
- * @todo       Description for class RRoEmbed_Resource_AbstractResource.
+ * @todo       Description for class Resource\AbstractResource.
  *
  * @package    RRoEmbed
  * @license    http://opensource.org/licenses/mit-license.html MIT License
  * @author     Romain Ruetschi <romain.ruetschi@gmail.com>
  * @version    0.1
  */
-abstract class RRoEmbed_Resource_AbstractResource
+abstract class AbstractResource
 {
     
     /**
@@ -127,18 +130,19 @@ abstract class RRoEmbed_Resource_AbstractResource
      * Create a Resource object from the supplied resource.
      *
      * @param stdClass $resource The resource to create an Resource from. 
-     * @return RRoEmbed_Resource_AbstractResource
+     * @return RRoEmbed\Resource\AbstractResource
      * @author Romain Ruetschi <romain.ruetschi@gmail.com>
      */
     public static function factory( $resource )
     {
         $type      = $resource->type;
-        $className = 'RRoEmbed_Resource_' . ucfirst( strtolower( $type ) );
+        $className = 'RRoEmbed\\Resource\\' . ucfirst( strtolower( $type ) );
         
         if( !class_exists( $className ) )
         {
-            throw new RRoEmbed_Exception(
-                'Unknown resource type "' . $type .'".'
+            throw new \RRoEmbed\Exception(
+                'Unknown resource type "' . $type .'".',
+                \RRoEmbed\Exception::UNKNOWN_RESOURCE_TYPE
             );
         }
         
@@ -148,8 +152,8 @@ abstract class RRoEmbed_Resource_AbstractResource
         {
             $setterMethodName = 'set' . self::_underscoreToUpperCamelCase( $property );
             
-            if( !method_exists( $object, $setterMethodName ) && !method_exists( $object, '__call' )  ) {
-                
+            if( !method_exists( $object, $setterMethodName ) )
+            {
                 continue;
             }
             
