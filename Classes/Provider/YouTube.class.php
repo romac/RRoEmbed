@@ -1,5 +1,7 @@
 <?php
 
+declare( ENCODING = 'utf-8' );
+
 /*
  * Copyright (c) 2010 Romain Ruetschi <romain.ruetschi@gmail.com>
  * 
