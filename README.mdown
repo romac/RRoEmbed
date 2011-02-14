@@ -39,16 +39,8 @@ Usage
     // Will call __toString()
     print $resource;
 
-    /*
     Result:
-
-    <object width="480" height="295">
-        <param name="movie" value="http://www.youtube.com/e/ThvBJMzmSZI"></param>
-        <param name="allowFullScreen" value="true"></param>
-        <param name="allowscriptaccess" value="always"></param>
-        <embed src="http://www.youtube.com/e/ThvBJMzmSZI" type="application/x-shockwave-flash" width="480" height="295" allowscriptaccess="always" allowfullscreen="true"></embed>
-    </object>
-    */
+    <object width="480" height="295"> […] </object>
 
     // You can also omit to specify the provider, if so the Consumer will try to
     // automatically find a valid provider endpoint.
@@ -58,12 +50,11 @@ Usage
 
     print_r( $resource );
 
-    /*
     Result:
 
     RRoEmbed\Resource\Video Object
     (
-        [_html:protected]            => <object width="480" height="295"><param name="movie" value="http://www.youtube.com/e/ThvBJMzmSZI"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/e/ThvBJMzmSZI" type="application/x-shockwave-flash" width="480" height="295" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+        [_html:protected]            => <object width="480" height="295"><param name="movie" […]
         [_width:protected]           => 480
         [_height:protected]          => 295
         [_type:protected]            => video
@@ -78,7 +69,7 @@ Usage
         [_thumbnailWidth:protected]  => 480
         [_thumbnailHeight:protected] => 360
     )
-    */
+
     
 License
 -------
