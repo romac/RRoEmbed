@@ -4,7 +4,7 @@ RRoEmbed
 Description
 -----------
 
-RRoEmbed is a PHP 5 library which provides an interface to consume oEmbed resources.
+RRoEmbed is a PHP 5.3+ library that provides an interface to consume oEmbed resources.
 
 oEmbed
 ------
@@ -18,60 +18,61 @@ Read more: [oEmbed website](http://www.oembed.com/)
 Usage
 -----
 
-    <?php
+```php
+<?php
 
-    // Include the autoloader.
-    require_once( __DIR__ . '/Classes/Autoloader.class.php' );
+// Include the autoloader.
+require_once( __DIR__ . '/Classes/Autoloader.class.php' );
 
-    // Register the autoloader.
-    RRoEmbed\Autoloader::getInstance()->register();
+// Register the autoloader.
+RRoEmbed\Autoloader::getInstance()->register();
 
-    // Create a new consumer.
-    $consumer = new RRoEmbed\Consumer();
+// Create a new consumer.
+$consumer = new RRoEmbed\Consumer();
 
-    // Call the "consume" method and supply it the URL of the resource you'd like
-    // to get the oEmbed representation of and the Provider instance.
-    $resource = $consumer->consume(
-        'http://www.youtube.com/watch?v=ThvBJMzmSZI',
-        new RRoEmbed\Provider\YouTube()
-    );
+// Call the "consume" method and supply it the URL of the resource you'd like
+// to get the oEmbed representation of and the Provider instance.
+$resource = $consumer->consume(
+    'http://www.youtube.com/watch?v=ThvBJMzmSZI',
+    new RRoEmbed\Provider\YouTube()
+);
 
-    // Will call __toString()
-    print $resource;
+// Will call __toString()
+print $resource;
 
-    Result:
-    <object width="480" height="295"> […] </object>
+Result:
+<object width="480" height="295"> […] </object>
 
-    // You can also omit to specify the provider, if so the Consumer will try to
-    // automatically find a valid provider endpoint.
-    // Note that, as the Consumer class implements the __invoke method you
-    // can use any of its instances as a callable.
-    $resource = $consumer( 'http://www.youtube.com/watch?v=ThvBJMzmSZI' );
+// You can also omit to specify the provider, if so the Consumer will try to
+// automatically find a valid provider endpoint.
+// Note that, as the Consumer class implements the __invoke method you
+// can use any of its instances as a callable.
+$resource = $consumer( 'http://www.youtube.com/watch?v=ThvBJMzmSZI' );
 
-    print_r( $resource );
+print_r( $resource );
 
-    Result:
+Result:
 
-    RRoEmbed\Resource\Video Object
-    (
-        [_html:protected]            => <object width="480" height="295"><param name="movie" […]
-        [_width:protected]           => 480
-        [_height:protected]          => 295
-        [_type:protected]            => video
-        [_version:protected]         => 1.0
-        [_title:protected]           => The Most AMAZING video on the internet #Egypt #jan25
-        [_authorName:protected]      => hadi15
-        [_authorUrl:protected]       => http://www.youtube.com/user/hadi15
-        [_providerName:protected]    => YouTube
-        [_providerUrl:protected]     => http://www.youtube.com/
-        [_cacheAge:protected]        => 0
-        [_thumbnailUrl:protected]    => http://i1.ytimg.com/vi/ThvBJMzmSZI/hqdefault.jpg
-        [_thumbnailWidth:protected]  => 480
-        [_thumbnailHeight:protected] => 360
-    )
-
+RRoEmbed\Resource\Video Object
+(
+    [_html:protected]            => <object width="480" height="295"><param name="movie" […]
+    [_width:protected]           => 480
+    [_height:protected]          => 295
+    [_type:protected]            => video
+    [_version:protected]         => 1.0
+    [_title:protected]           => The Most AMAZING video on the internet #Egypt #jan25
+    [_authorName:protected]      => hadi15
+    [_authorUrl:protected]       => http://www.youtube.com/user/hadi15
+    [_providerName:protected]    => YouTube
+    [_providerUrl:protected]     => http://www.youtube.com/
+    [_cacheAge:protected]        => 0
+    [_thumbnailUrl:protected]    => http://i1.ytimg.com/vi/ThvBJMzmSZI/hqdefault.jpg
+    [_thumbnailWidth:protected]  => 480
+    [_thumbnailHeight:protected] => 360
+)
+```
     
 License
 -------
-
-The code is licensed under the very liberal [MIT license](http://opensource.org/licenses/mit-license.html).
+Copyright (c) 2012 Romain Ruetschi  
+Dual licensed under the [MIT](http://opensource.org/licenses/mit-license.html) and [GPL](http://www.gnu.org/licenses/gpl-2.0.html) licenses.
